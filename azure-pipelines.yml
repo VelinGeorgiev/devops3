@@ -14,9 +14,9 @@ steps:
     versionSpec: '8.x'
   displayName: 'Install Node.js'
 
-- script: |
-    rm package-lock.json
-  displayName: 'Cleanup package-lock'
+#- script: |
+#    rm package-lock.json
+#  displayName: 'Cleanup package-lock'
 
 - script: |
     npm i -g gulp
