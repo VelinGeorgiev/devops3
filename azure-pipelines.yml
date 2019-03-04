@@ -36,10 +36,20 @@ steps:
   displayName: 'Publish build SPFx artifacts for env Developement'
   # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
 
+# - task: CopyFiles@2
+#   inputs:
+#     contents: '**/devops/PRODSetup/**'
+#     targetFolder: '$(Build.SourcesDirectory)/'
+
 - task: CopyFiles@2
   inputs:
-    contents: '**/devops/PRODSetup/**'
+    contents: |
+     devops\prodsetup\config\config.json
+     devops\prodsetup\src\AppSettings.ts
+     devops\prodsetup\webpart\iceCreamShop\IceCreamShopWebPart.manifest.json
     targetFolder: '$(Build.SourcesDirectory)/'
+    overWrite: true
+
 
 - script: |
     npm i
