@@ -16,6 +16,14 @@ steps:
     versionSpec: '8.x'
   displayName: 'Install Node.js'
 
+- script: |
+    cd '$(Build.ArtifactStagingDirectory)'
+    rm -rf /prod
+    rm -rf /dev
+    cd '$(Build.SourcesDirectory)'
+    rm -rf /node_modules
+  displayName: 'Cleanup'
+
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
@@ -61,11 +69,3 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/prod/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'PROD-sppkg' 
   displayName: 'Publish build SPFx artifacts for env PROD'
-
-- script: |
-    cd '$(Build.ArtifactStagingDirectory)'
-    rm -rf /prod
-    rm -rf /dev
-    cd '$(Build.SourcesDirectory)'
-    rm -rf /node_modules
-  displayName: 'Cleanup'
