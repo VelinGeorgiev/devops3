@@ -1,0 +1,33 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool: 'Default'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '8.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm i -g gulp
+    npm install
+  displayName: 'Run npm install'
+
+- script: |
+    gulp bundle --ship
+    gulp package-solution --ship
+  displayName: 'Build and package the solution'
+
+# Publish Build Artifacts SPFx sppkg
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
+    artifactName: 'SPFx Ice cream solution - DEV sppkg' 
+  displayName: 'Publish build SPFx artifacts for env Developement'
+  # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
