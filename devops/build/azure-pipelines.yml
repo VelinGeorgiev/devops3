@@ -50,6 +50,7 @@ steps:
 
 - script: |
     cd '$(Build.ArtifactStagingDirectory)/prod'
+    rm package-lock.json
     npm i
     gulp bundle --ship
     gulp package-solution --ship
