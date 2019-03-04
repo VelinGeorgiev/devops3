@@ -6,7 +6,7 @@
 trigger:
 - master
 
-pool: 'Default'
+pool: 'Ubuntu-16.04'
 
 steps:
 - task: NodeTool@0
@@ -14,51 +14,33 @@ steps:
     versionSpec: '8.x'
   displayName: 'Install Node.js'
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/*'
-    targetFolder: '$(Build.ArtifactStagingDirectory)/dev'
-
 - script: |
-    cd '$(Build.ArtifactStagingDirectory)/dev'
     npm i
     gulp bundle --ship
     gulp package-solution --ship
   displayName: 'Build DEV package'
 
-# Publish Build Artifacts SPFx sppkg
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/dev/sharepoint/solution/react-app-settings.sppkg' 
+    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'DEV-sppkg' 
   displayName: 'Publish build SPFx artifacts for env Developement'
-  # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
-
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/*'
-    targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
 
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/devops/configurations/PROD'
     contents: '**/*'
-    targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
+    targetFolder: '$(Build.SourcesDirectory)'
     overWrite: true
 
 - script: |
-    cd '$(Build.ArtifactStagingDirectory)/prod'
     npm i
     gulp bundle --ship
     gulp package-solution --ship
   displayName: 'Build PROD package'
 
-# Publish Build Artifacts SPFx sppkg
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/prod/sharepoint/solution/react-app-settings.sppkg' 
+    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'PROD-sppkg' 
   displayName: 'Publish build SPFx artifacts for env PROD'
-  # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts

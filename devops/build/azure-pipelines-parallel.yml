@@ -3,9 +3,11 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- master
+# trigger:
+# - master
 
+trigger: none
+ 
 jobs:
 - job: DEV
   pool:
@@ -16,26 +18,17 @@ jobs:
         versionSpec: '8.x'
       displayName: 'Install Node.js'
 
-    - task: CopyFiles@2
-      inputs:
-        sourceFolder: '$(Build.SourcesDirectory)'
-        contents: '**/*'
-        targetFolder: '$(Build.ArtifactStagingDirectory)/dev'
-
     - script: |
-        cd '$(Build.ArtifactStagingDirectory)/dev'
         npm i
         gulp bundle --ship
         gulp package-solution --ship
       displayName: 'Build DEV package'
 
-    # Publish Build Artifacts SPFx sppkg
     - task: PublishBuildArtifacts@1
       inputs:
-        pathtoPublish: '$(Build.ArtifactStagingDirectory)/dev/sharepoint/solution/react-app-settings.sppkg' 
+        pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
         artifactName: 'DEV-sppkg' 
       displayName: 'Publish build SPFx artifacts for env Developement'
-      # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
 
 - job: PROD
   pool:
@@ -48,28 +41,19 @@ jobs:
 
     - task: CopyFiles@2
       inputs:
-        sourceFolder: '$(Build.SourcesDirectory)'
-        contents: '**/*'
-        targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
-
-    - task: CopyFiles@2
-      inputs:
         sourceFolder: '$(Build.SourcesDirectory)/devops/configurations/PROD'
         contents: '**/*'
-        targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
+        targetFolder: '$(Build.SourcesDirectory)'
         overWrite: true
 
     - script: |
-        cd '$(Build.ArtifactStagingDirectory)/prod'
         npm i
         gulp bundle --ship
         gulp package-solution --ship
       displayName: 'Build PROD package'
 
-    # Publish Build Artifacts SPFx sppkg
     - task: PublishBuildArtifacts@1
       inputs:
-        pathtoPublish: '$(Build.ArtifactStagingDirectory)/prod/sharepoint/solution/react-app-settings.sppkg' 
+        pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
         artifactName: 'PROD-sppkg' 
       displayName: 'Publish build SPFx artifacts for env PROD'
-      # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
