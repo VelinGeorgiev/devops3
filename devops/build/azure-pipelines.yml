@@ -60,7 +60,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)/devops/configurations'
+    sourceFolder: '$(Build.SourcesDirectory)/devops/configurations/PROD'
     contents: '**/*'
     targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
     overWrite: true
