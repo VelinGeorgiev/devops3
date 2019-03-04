@@ -6,6 +6,7 @@
 trigger:
 - master
 
+#pool: 'Default'
 pool:
     vmImage: 'Ubuntu-16.04'
 
@@ -15,7 +16,14 @@ steps:
     versionSpec: '8.x'
   displayName: 'Install Node.js'
 
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '**/*'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/dev'
+
 - script: |
+    cd '$(Build.ArtifactStagingDirectory)/dev'
     npm i
     gulp bundle --ship
     gulp package-solution --ship
@@ -23,18 +31,25 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/dev/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'DEV-sppkg' 
   displayName: 'Publish build SPFx artifacts for env Developement'
 
 - task: CopyFiles@2
   inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '**/*'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
+
+- task: CopyFiles@2
+  inputs:
     sourceFolder: '$(Build.SourcesDirectory)/devops/configurations/PROD'
     contents: '**/*'
-    targetFolder: '$(Build.SourcesDirectory)'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
     overWrite: true
 
 - script: |
+    cd '$(Build.ArtifactStagingDirectory)/prod'
     npm i
     gulp bundle --ship
     gulp package-solution --ship
@@ -42,6 +57,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/prod/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'PROD-sppkg' 
   displayName: 'Publish build SPFx artifacts for env PROD'
