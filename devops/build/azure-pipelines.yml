@@ -16,12 +16,11 @@ steps:
     versionSpec: '8.x'
   displayName: 'Install Node.js'
 
-- script: |
-    rm -rf $(Build.SourcesDirectory)/node_modules
-    rm -rf $(Build.ArtifactStagingDirectory)/prod
-    rm -rf $(Build.ArtifactStagingDirectory)/dev
-    gulp clanup
-  displayName: 'Cleanup'
+# - script: |
+#     rm -rf $(Build.SourcesDirectory)/node_modules
+#     rm -rf $(Build.ArtifactStagingDirectory)/prod
+#     rm -rf $(Build.ArtifactStagingDirectory)/dev
+#   displayName: 'Cleanup'
 
 - task: CopyFiles@2
   inputs:
@@ -34,7 +33,7 @@ steps:
     npm i
     gulp bundle --ship
     gulp package-solution --ship
-  displayName: 'Build DEV package'
+  displayName: 'Build DEV package 1'
 
 - task: PublishBuildArtifacts@1
   inputs:
