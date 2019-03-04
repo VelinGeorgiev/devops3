@@ -9,32 +9,32 @@ trigger:
 pool: 'Default'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '8.x'
+#   displayName: 'Install Node.js'
 
 # - script: |
 #     rm package-lock.json
 #     rm -rf node_modules
 #   displayName: 'Cleanup package-lock'
 
-- script: |
-    npm i
-  displayName: 'Run npm install'
+# - script: |
+#     npm i
+#   displayName: 'Run npm install'
 
-- script: |
-    gulp bundle --ship
-    gulp package-solution --ship
-  displayName: 'Build and package the solution'
+# - script: |
+#     gulp bundle --ship
+#     gulp package-solution --ship
+#   displayName: 'Build and package the solution'
 
-# Publish Build Artifacts SPFx sppkg
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
-    artifactName: 'SPFx Ice cream solution - DEV sppkg' 
-  displayName: 'Publish build SPFx artifacts for env Developement'
-  # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
+# # Publish Build Artifacts SPFx sppkg
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
+#     artifactName: 'SPFx Ice cream solution - DEV sppkg' 
+#   displayName: 'Publish build SPFx artifacts for env Developement'
+#   # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
 
 # - task: CopyFiles@2
 #   inputs:
@@ -43,25 +43,24 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)/devops/prodsetup'
+    sourceFolder: '$(Build.SourcesDirectory)/devops/PRODSetup'
     contents: '**/*'
     targetFolder: '$(Build.SourcesDirectory)/'
     overWrite: true
 
+# - script: |
+#     npm i
+#   displayName: 'Run npm install'
 
-- script: |
-    npm i
-  displayName: 'Run npm install'
+# - script: |
+#     gulp bundle --ship
+#     gulp package-solution --ship
+#   displayName: 'Build and package the solution'
 
-- script: |
-    gulp bundle --ship
-    gulp package-solution --ship
-  displayName: 'Build and package the solution'
-
-# Publish Build Artifacts SPFx sppkg
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
-    artifactName: 'SPFx Ice cream solution - PROD sppkg' 
-  displayName: 'Publish build SPFx artifacts for env Developement'
-  # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
+# # Publish Build Artifacts SPFx sppkg
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
+#     artifactName: 'SPFx Ice cream solution - PROD sppkg' 
+#   displayName: 'Publish build SPFx artifacts for env Developement'
+#   # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
