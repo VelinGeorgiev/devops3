@@ -33,7 +33,7 @@ steps:
     npm i
     gulp bundle --ship
     gulp package-solution --ship
-  displayName: 'Build DEV package 1'
+  displayName: 'Build DEV package 2'
 
 - task: PublishBuildArtifacts@1
   inputs:
