@@ -17,11 +17,9 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cd '$(Build.ArtifactStagingDirectory)'
-    rm -rf /prod
-    rm -rf /dev
-    cd '$(Build.SourcesDirectory)'
-    rm -rf /node_modules
+    rm -rf $(Build.SourcesDirectory)/node_modules
+    rm -rf $(Build.ArtifactStagingDirectory)/prod
+    rm -rf $(Build.ArtifactStagingDirectory)/dev
   displayName: 'Cleanup'
 
 - task: CopyFiles@2
