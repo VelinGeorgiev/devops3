@@ -14,11 +14,6 @@ steps:
     versionSpec: '8.x'
   displayName: 'Install Node.js'
 
-- task: CopyFiles@2
-  inputs:
-    contents: 'package.json'
-    targetFolder: $(Build.ArtifactStagingDirectory)
-
 # - script: |
 #     rm package-lock.json
 #     rm -rf node_modules
@@ -38,5 +33,27 @@ steps:
   inputs:
     pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'SPFx Ice cream solution - DEV sppkg' 
+  displayName: 'Publish build SPFx artifacts for env Developement'
+  # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
+
+- task: CopyFiles@2
+  inputs:
+    contents: '**/devops/PRODSetup/**'
+    targetFolder: $(Build.SourcesDirectory)
+
+- script: |
+    npm i
+  displayName: 'Run npm install'
+
+- script: |
+    gulp bundle --ship
+    gulp package-solution --ship
+  displayName: 'Build and package the solution'
+
+# Publish Build Artifacts SPFx sppkg
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
+    artifactName: 'SPFx Ice cream solution - PROD sppkg' 
   displayName: 'Publish build SPFx artifacts for env Developement'
   # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
