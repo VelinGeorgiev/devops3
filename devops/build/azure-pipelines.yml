@@ -50,7 +50,7 @@ steps:
 - script: |
     cd '$(Build.ArtifactStagingDirectory)/dev'
     ls
-  displayName: 'List all in dev'
+  displayName: 'List all in dev t'
 
 - task: CopyFiles@2
   inputs:
