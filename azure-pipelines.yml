@@ -9,15 +9,15 @@ trigger:
 pool: 'Default'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '8.x'
+#   displayName: 'Install Node.js'
 
-# - script: |
-#     rm package-lock.json
-#     rm -rf node_modules
-#   displayName: 'Cleanup package-lock'
+- script: |
+    rm package-lock.json
+    rm -rf node_modules
+  displayName: 'Cleanup package-lock'
 
 - script: |
     npm i -g gulp
