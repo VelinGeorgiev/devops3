@@ -15,6 +15,11 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    rm package-lock.json
+    gulp clean
+  displayName: 'Cleanup before transpile'
+
+- script: |
     npm i -g gulp
     npm install
   displayName: 'Run npm install'
