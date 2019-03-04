@@ -20,7 +20,7 @@ steps:
 #   displayName: 'Cleanup package-lock'
 
 - script: |
-    npm install
+    npm i
   displayName: 'Run npm install'
 
 - script: |
