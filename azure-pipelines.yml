@@ -39,7 +39,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: '**/devops/PRODSetup/**'
-    targetFolder: $(Build.SourcesDirectory)
+    targetFolder: '$(Build.SourcesDirectory)/'
 
 - script: |
     npm i
