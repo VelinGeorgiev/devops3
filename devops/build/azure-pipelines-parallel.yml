@@ -39,7 +39,7 @@ jobs:
 
 - job: PROD
   pool:
-    vmImage: 'macOS-10.13'
+    vmImage: 'Ubuntu-16.04'
   steps:
     - task: CopyFiles@2
       inputs:
