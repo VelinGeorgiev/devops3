@@ -44,9 +44,9 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: |
-     devops\prodsetup\config\config.json
-     devops\prodsetup\src\AppSettings.ts
-     devops\prodsetup\webpart\iceCreamShop\IceCreamShopWebPart.manifest.json
+     devops/prodsetup/config/config.json
+     devops/prodsetup/src/AppSettings.ts
+     devops/prodsetup/webpart/iceCreamShop/IceCreamShopWebPart.manifest.json
     targetFolder: '$(Build.SourcesDirectory)/'
     overWrite: true
 
