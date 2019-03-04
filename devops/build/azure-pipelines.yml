@@ -20,6 +20,7 @@ steps:
     rm -rf $(Build.SourcesDirectory)/node_modules
     rm -rf $(Build.ArtifactStagingDirectory)/prod
     rm -rf $(Build.ArtifactStagingDirectory)/dev
+    gulp clanup
   displayName: 'Cleanup'
 
 - task: CopyFiles@2
