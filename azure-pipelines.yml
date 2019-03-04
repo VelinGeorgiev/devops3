@@ -16,8 +16,7 @@ steps:
 
 - script: |
     rm package-lock.json
-    gulp clean
-  displayName: 'Cleanup before transpile'
+  displayName: 'Cleanup package-lock'
 
 - script: |
     npm i -g gulp
