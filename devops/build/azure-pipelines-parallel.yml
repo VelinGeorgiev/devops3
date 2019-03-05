@@ -18,9 +18,12 @@ jobs:
 
     - script: |
         npm i
+      displayName: 'Build DEV package'
+  
+    - script: |
         gulp bundle --ship
         gulp package-solution --ship
-      displayName: 'Build DEV package'
+      displayName: 'Build DEV package 1'
 
     - task: PublishBuildArtifacts@1
       inputs:
