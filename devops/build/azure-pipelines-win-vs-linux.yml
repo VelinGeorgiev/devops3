@@ -28,7 +28,7 @@ jobs:
       inputs:
         pathtoPublish: '$(Build.SourcesDirectory)\sharepoint\solution\react-app-settings.sppkg' 
         artifactName: 'DEV-sppkg' 
-      displayName: 'Publish build SPFx artifacts for env Developement'
+      displayName: 'Publish DEV env SPFx artifacts'
 
 - job: PROD
   pool:
@@ -59,7 +59,7 @@ jobs:
       inputs:
         pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
         artifactName: 'PROD-sppkg' 
-      displayName: 'Publish build SPFx artifacts for env PROD'
+      displayName: 'Publish PROD env SPFx artifacts'
 
 - job: 'Release Scripts'
   pool:

@@ -33,7 +33,7 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/dev/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'DEV-sppkg' 
-  displayName: 'Publish build SPFx artifacts for env Developement'
+  displayName: 'Publish DEV env SPFx artifacts'
 
 - task: CopyFiles@2
   inputs:
@@ -62,10 +62,10 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/prod/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'PROD-sppkg' 
-  displayName: 'Publish build SPFx artifacts for env PROD'
+  displayName: 'Publish PROD env SPFx artifacts'
 
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.SourcesDirectory)/devops/release/' 
     artifactName: 'Release-scripts' 
-  displayName: 'Publish build release artifacts'
+  displayName: 'Publish release scripts'
