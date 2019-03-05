@@ -56,7 +56,7 @@ jobs:
         artifactName: 'PROD-sppkg' 
       displayName: 'Publish PROD env SPFx artifacts'
 
-- job: 'Release Scripts'
+- job: Release_Scripts
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
