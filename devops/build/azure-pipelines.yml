@@ -20,6 +20,7 @@ steps:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: '**/*'
     targetFolder: '$(Build.ArtifactStagingDirectory)/dev'
+  displayName: 'CopyFiles to folder staging/dev'
 
 - script: |
     cd '$(Build.ArtifactStagingDirectory)/dev'
@@ -39,6 +40,7 @@ steps:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: '**/*'
     targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
+  displayName: 'CopyFiles to folder staging/prod'
 
 - task: CopyFiles@2
   inputs:
@@ -46,6 +48,7 @@ steps:
     contents: '**/*'
     targetFolder: '$(Build.ArtifactStagingDirectory)/prod'
     overWrite: true
+  displayName: 'Apply PROD configuration (overrite dev env files)'
 
 - script: |
     cd '$(Build.ArtifactStagingDirectory)/prod'
