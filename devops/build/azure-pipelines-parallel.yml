@@ -17,16 +17,8 @@ jobs:
       displayName: 'Install Node.js'
 
     - script: |
-        npm i
+        npm i && gulp bundle --ship && gulp package-solution --ship
       displayName: 'Build DEV package'
-  
-    - script: |
-        gulp bundle --ship
-      displayName: 'Build DEV package 1'
-
-    - script: |
-        gulp package-solution --ship
-      displayName: 'Build DEV package 2'
 
     - task: PublishBuildArtifacts@1
       inputs:
