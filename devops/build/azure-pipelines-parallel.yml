@@ -63,5 +63,5 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs:
         pathtoPublish: '$(Build.SourcesDirectory)/devops/release/' 
-        artifactName: 'Release scripts' 
+        artifactName: 'Release-scripts' 
       displayName: 'Publish release scripts'
