@@ -9,7 +9,7 @@ trigger:
 jobs:
 - job: DEV
   pool:
-    vmImage: 'win1803'
+    vmImage: 'windows-2019'
   steps:
     - task: NodeTool@0
       inputs:
