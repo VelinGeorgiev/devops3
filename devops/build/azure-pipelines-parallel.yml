@@ -9,7 +9,7 @@ trigger:
 jobs:
 - job: DEV
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'Ubuntu-16.04'
   steps:
     - task: NodeTool@0
       inputs:
@@ -18,15 +18,13 @@ jobs:
 
     - script: |
         npm i
-      displayName: 'Npm install'
-
-    - script: |
-        gulp bundle --ship && gulp package-solution --ship
+        gulp bundle --ship
+        gulp package-solution --ship
       displayName: 'Build DEV package'
 
     - task: PublishBuildArtifacts@1
       inputs:
-        pathtoPublish: '$(Build.SourcesDirectory)\sharepoint\solution\react-app-settings.sppkg' 
+        pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
         artifactName: 'DEV-sppkg' 
       displayName: 'Publish build SPFx artifacts for env Developement'
 
@@ -48,9 +46,6 @@ jobs:
 
     - script: |
         npm i
-      displayName: 'Npm install'
-
-    - script: |
         gulp bundle --ship
         gulp package-solution --ship
       displayName: 'Build PROD package'
