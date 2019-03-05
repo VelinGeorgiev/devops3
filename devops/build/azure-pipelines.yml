@@ -63,3 +63,9 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/prod/sharepoint/solution/react-app-settings.sppkg' 
     artifactName: 'PROD-sppkg' 
   displayName: 'Publish build SPFx artifacts for env PROD'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.SourcesDirectory)/devops/release/' 
+    artifactName: 'Release-scripts' 
+  displayName: 'Publish build release artifacts'
