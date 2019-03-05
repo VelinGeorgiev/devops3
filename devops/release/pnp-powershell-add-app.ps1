@@ -10,10 +10,10 @@ param(
 
 $sppkgPath = "PROD-sppkg"
 
-if($isDev){
+if ($isDev.ToString) {
     $sppkgPath = "DEV-sppkg"
 }
 
 Connect-PnPOnline $site -AccessToken $accessToken
 
-Add-PnPApp -Path "./_SPFx build/$sppkgPath/react-jest-testing.sppkg" -Scope $scope -Publish
+Add-PnPApp -Path "./_SPFx build/$sppkgPath/react-app-settings.sppkg" -Scope $scope -Publish

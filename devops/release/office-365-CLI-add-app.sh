@@ -11,15 +11,15 @@ o365 version
 # You have to run "o365 spo login https://contoso.sharepoint.com"
 # to agree with the consent first time
 
-sppkg_path = "PROD-sppkg"
+sppkg_path="PROD-sppkg"
 
-if [ "$ISDEV" ]
+if [ ${ISDEV,,} = "true" ]
 then
-    sppkg_path = "DEV-sppkg"
+    sppkg_path="DEV-sppkg"
 fi
 
 o365 spo login $SITE --authType password --userName $EMAIL --password $PASS
 
-o365 spo app add --filePath "./_SPFx build/$sppkg_path/react-jest-testing.sppkg" --appCatalogUrl $SITE --scope $SCOPE --overwrite
+o365 spo app add --filePath "./_SPFx build/$sppkg_path/react-app-settings.sppkg" --appCatalogUrl $SITE --scope $SCOPE --overwrite
 
-o365 spo app deploy --name react-jest-testing.sppkg --appCatalogUrl $SITE --scope $SCOPE --skipFeatureDeployment
+o365 spo app deploy --name react-app-settings.sppkg --appCatalogUrl $SITE --scope $SCOPE --skipFeatureDeployment
