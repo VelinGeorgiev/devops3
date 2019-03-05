@@ -24,7 +24,7 @@ jobs:
 
     - task: PublishBuildArtifacts@1
       inputs:
-        pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-app-settings.sppkg' 
+        pathtoPublish: '$(Build.SourcesDirectory)\sharepoint\solution\react-app-settings.sppkg' 
         artifactName: 'DEV-sppkg' 
       displayName: 'Publish build SPFx artifacts for env Developement'
 
