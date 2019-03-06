@@ -3,14 +3,14 @@ param(
     $accessToken,
     [ValidateSet("Site", "Tenant")]
     $scope,
-    [switch]$isDev
+    $isDev
 ) 
 
 # Install pnp powershell module on your release agent/vm
 
 $sppkgPath = "PROD-sppkg"
 
-if ($isDev.ToString) {
+if ($isDev == "true") {
     $sppkgPath = "DEV-sppkg"
 }
 
