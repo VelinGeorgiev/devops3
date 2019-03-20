@@ -8,6 +8,8 @@ ISDEV=$5
 npm i -g @pnp/office365-cli
 o365 version
 
+# comment
+
 # You have to run "o365 spo login https://contoso.sharepoint.com"
 # to agree with the consent first time
 
