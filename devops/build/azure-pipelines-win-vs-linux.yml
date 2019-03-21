@@ -18,7 +18,7 @@ jobs:
 
     - script: |
         npm i
-      displayName: 'Npm install'
+      displayName: 'Npm install 1'
 
     - script: |
         gulp bundle --ship && gulp package-solution --ship
