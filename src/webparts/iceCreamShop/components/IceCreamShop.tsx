@@ -14,7 +14,7 @@ export default class IceCreamShop extends React.Component<IIceCreamShopProps, {}
         <div className={ styles.container }>
           <div className={ styles.row }>
             <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to PnP ice cream shop v1!</span>
+              <span className={ styles.title }>Welcome to PnP ice cream shop v2!</span>
               <code>
                 <pre>
                   appSettings.tenantUrl: {AppSettings.tenantUrl}
